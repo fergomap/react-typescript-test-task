@@ -14,16 +14,18 @@ const DashboardComponent: FunctionComponent = (): ReactElement => {
     const { commits } = useSelector((state: MainState) => state.commits);
     
     useEffect(() => {
-        dispatch(SHOW_LOADING_ACTION);
+        if (!commits.length) {
+            dispatch(SHOW_LOADING_ACTION);
 
-        getCommits()
-            .then((newCommits: Commit[]) => {
-                const setCommitsAction = {...SET_COMMITS_ACTION};
-                setCommitsAction.commits = newCommits;
-                dispatch(setCommitsAction);
-            })
-            .finally(() => dispatch(HIDE_LOADING_ACTION));
-    }, []);
+            getCommits()
+                .then((newCommits: Commit[]) => {
+                    const setCommitsAction = {...SET_COMMITS_ACTION};
+                    setCommitsAction.commits = newCommits;
+                    dispatch(setCommitsAction);
+                })
+                .finally(() => dispatch(HIDE_LOADING_ACTION));
+        }
+    }, [commits]);
 
     return <section className="dashboard-component">
         <HeaderComponent title="Dashboard"/>
