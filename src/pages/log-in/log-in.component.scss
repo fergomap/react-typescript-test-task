@@ -1,0 +1,30 @@
+.log-in-component {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: lightyellow;
+
+    .form-container {
+        width: 25vw;
+        background-color: white;
+        padding: 2rem;
+
+        @media (max-width: 768px) {
+            width: 80vw;
+        }
+
+        @media (min-width: 760px) and (max-width: 1024px) {
+            width: 50vw;
+        }
+
+        .auth-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            text-align: center;
+            padding: 20px;
+            border-radius: 3px;
+        }
+    }
+}
